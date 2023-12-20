@@ -104,12 +104,14 @@ void loop() {
 
 
 // we won't use this acc info
-/*     
+/*  
+
   Serial.print(AccX / 2048);
   Serial.print(" ");
   Serial.print(AccY / 2048);
   Serial.print(" ");
   Serial.println(AccZ / 2048);
+  
 */
 
 // We will use this print here to visualize what is going on with our data
