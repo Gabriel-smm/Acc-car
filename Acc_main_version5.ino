@@ -9,7 +9,7 @@
 
 */
 
-// Inclusion of libraries
+// libraries
 #include <Wire.h>
 
 // Address of the I2C of the sensor MPU-6050
@@ -17,7 +17,7 @@ const int MPU = 0x68;
 
 // Variables that will store the values
 float GyrX, GyrY, AccX, AccY, AccZ, Temp, GyrZ;
-int PadX, PadY, PadX2, PadY2; //those variables will be used to store the current position of the sensor
+int PadX, PadY, PadX2, PadY2; //those intermediate variables will be used to store the current position of the sensor
 
 
 void setup() {
@@ -128,7 +128,7 @@ void loop() {
   
 
 
-    PadX = PadX2 + (3 + (GyrX / 131)); // my sensor was showing "-3°" in the motionless state, so I corrected this imprecision here
+    PadX = PadX2 + (3 + (GyrX / 131)); // my sensor was showing "-3°" in the initial state for the X axis, so I corrected this imprecision here
     PadY = PadY2 + (GyrY / 131);
 
     led_Ah();
@@ -139,9 +139,9 @@ void loop() {
   }
 
   if (PadY > 1600){            // With this serie of if's, I tried to correct thesecond problem of the last version
-    PadY = 0;                  // As we move the sensor, it starts to stack the values of the current position
-  }                            // For example, when I move 30° in some axis and -30° in the same axis, the valued stored is not zero
-   if (PadX < -1600){          // with this block o code, I can reset the values everytime it 
+    PadY = 0;                  // As we move the sensor, it starts to stack the values of the current position with some errors (noise)
+  }                            // For example, when I move 30° in some axis and then -30° in the same axis, the valued stored is not always zero
+   if (PadX < -1600){          // with this block o code, I can reset the values in the variable everytime the variable stacks incorrectly
     PadX = 0;
   }
 
@@ -150,8 +150,7 @@ void loop() {
   }
 
 
-
-    PadX2 = PadX ; 
+    PadX2 = PadX ; // here I transfer the data of the intermediate variables to reset the loop for the next instant moment
     PadY2 = PadY ;
 
  
