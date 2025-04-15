@@ -1,4 +1,3 @@
-#include <Wire.h>
 
 /*
     * Original source ---> Created by Cleber Borges - FunBots - @cleber.funbots  *     *
