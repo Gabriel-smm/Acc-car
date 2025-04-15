@@ -10,7 +10,7 @@
 */
 
 // Inclusion of libraries
-#include<Wire.h>
+#include <Wire.h>
 
 // Address of the I2C of the sensor MPU-6050
 const int MPU = 0x68;
